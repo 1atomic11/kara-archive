@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>کارا 🎁 | آرشیو آفرهای رایگان هوش مصنوعی</title>
+<style>
+  :root{
+    --bg:#0b1220; --card:#111a2e; --card2:#0e1626; --line:#1e2a44;
+    --text:#e7eef9; --muted:#8fa3c0; --teal:#14B8A6; --teal-dark:#0d9488;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg); color:var(--text);
+    font-family:"Vazirmatn","Segoe UI",Tahoma,sans-serif;
+    line-height:1.9; padding-bottom:0;
+  }
+  a{text-decoration:none;}
+  .nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(11,18,32,.88); backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-in{
+    max-width:900px; margin:0 auto; padding:12px 20px;
+    display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;
+  }
+  .brand{display:flex; align-items:center; gap:8px; font-weight:800; font-size:1.05rem; color:var(--text);}
+  .brand .gift{color:var(--teal);}
+  .nav-links{display:flex; gap:6px; flex-wrap:wrap;}
+  .nav-links a{
+    color:var(--muted); font-size:.88rem; padding:6px 14px; border-radius:10px;
+    transition:color .15s, background .15s;
+  }
+  .nav-links a:hover{color:var(--text); background:var(--card2);}
+  .nav-cta{background:var(--teal); color:#04211d !important; font-weight:700;}
+  .nav-cta:hover{background:var(--teal-dark) !important;}
+  header{
+    padding:44px 20px 30px; text-align:center;
+    background:linear-gradient(180deg,#0d1526 0%,var(--bg) 100%);
+    border-bottom:1px solid var(--line);
+  }
+  header h1{font-size:1.65rem; margin-bottom:8px;}
+  header h1 .gift{color:var(--teal);}
+  header p{color:var(--muted); font-size:.95rem; max-width:600px; margin:0 auto;}
+  .stats{display:flex; gap:26px; justify-content:center; margin-top:20px; flex-wrap:wrap;}
+  .stat b{color:var(--teal); font-size:1.3rem; display:block;}
+  .stat span{color:var(--muted); font-size:.82rem;}
+  .toolbar{max-width:820px; margin:24px auto 0; padding:0 20px;}
+  .search{
+    width:100%; padding:13px 18px; border-radius:12px; border:1px solid var(--line);
+    background:var(--card2); color:var(--text); font-size:1rem; font-family:inherit;
+    outline:none;
+  }
+  .search:focus{border-color:var(--teal);}
+  .chips{display:flex; gap:8px; flex-wrap:wrap; margin-top:12px; justify-content:center;}
+  .chip{
+    padding:6px 16px; border-radius:99px; border:1px solid var(--line);
+    background:var(--card2); color:var(--muted); font-size:.84rem; cursor:pointer;
+    transition:all .15s; font-family:inherit;
+  }
+  .chip:hover{color:var(--text); border-color:var(--teal-dark);}
+  .chip.on{background:var(--teal); color:#04211d; border-color:var(--teal); font-weight:700;}
+  .sort-row{display:flex; justify-content:space-between; align-items:center; margin-top:14px; flex-wrap:wrap; gap:8px;}
+  .count{color:var(--muted); font-size:.85rem;}
+  .sort{font-family:inherit; font-size:.84rem; background:var(--card2); color:var(--text);
+    border:1px solid var(--line); border-radius:10px; padding:7px 12px; outline:none; cursor:pointer;}
+  main{max-width:820px; margin:14px auto; padding:0 20px; display:grid; gap:14px;}
+  .offer{
+    background:var(--card); border:1px solid var(--line); border-radius:16px;
+    padding:20px 22px; transition:border-color .2s;
+  }
+  .offer:hover{border-color:var(--teal-dark);}
+  .offer .top{display:flex; justify-content:space-between; align-items:flex-start; gap:10px; flex-wrap:wrap;}
+  .offer h3{font-size:1.02rem; margin-bottom:6px;}
+  .offer .teaser{white-space:pre-wrap; font-size:.92rem; color:var(--text);}
+  .offer .teaser.clamp{display:-webkit-box; -webkit-line-clamp:6; -webkit-box-orient:vertical; overflow:hidden;}
+  .more-btn{background:none; border:none; color:var(--teal); cursor:pointer; font-family:inherit;
+    font-size:.82rem; padding:4px 0;}
+  .tags{display:flex; gap:6px; flex-wrap:wrap; margin-top:12px;}
+  .tag{
+    font-size:.74rem; color:var(--teal); border:1px solid rgba(20,184,166,.35);
+    border-radius:8px; padding:2px 10px; background:rgba(20,184,166,.07); cursor:pointer;
+  }
+  .tag:hover{background:rgba(20,184,166,.16);}
+  .offer .actions{margin-top:14px;}
+  .offer .actions .btn{padding:9px 20px; font-size:.88rem;}
+  .btn{
+    display:inline-block; padding:11px 26px; border-radius:12px;
+    font-weight:700; font-size:.95rem;
+    transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .btn:hover{transform:translateY(-2px);}
+  .btn-telegram{background:var(--teal); color:#04211d;}
+  .btn-telegram:hover{box-shadow:0 6px 22px rgba(20,184,166,.35);}
+  .type-badge{font-size:.72rem; border-radius:8px; padding:2px 10px; flex-shrink:0;}
+  .type-afar{color:#fbbf24; border:1px solid rgba(251,191,36,.4); background:rgba(251,191,36,.08);}
+  .type-trend{color:#8b9dff; border:1px solid rgba(139,157,255,.4); background:rgba(139,157,255,.08);}
+  .empty{display:none; text-align:center; color:var(--muted); padding:40px 0;}
+  .how{max-width:820px; margin:36px auto 0; padding:28px 20px; background:var(--card2);
+    border:1px solid var(--line); border-radius:18px;}
+  .how h2{font-size:1.15rem; margin-bottom:16px; color:var(--text);}
+  .steps{display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:14px;}
+  .step{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:16px;}
+  .step b{color:var(--teal); display:block; margin-bottom:6px; font-size:.95rem;}
+  .step span{color:var(--muted); font-size:.86rem;}
+  footer{
+    margin-top:40px; border-top:1px solid var(--line); background:#0a101c;
+    padding:36px 20px 30px;
+  }
+  .foot-in{max-width:820px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:26px;}
+  .foot-in h4{font-size:.95rem; margin-bottom:10px; color:var(--text);}
+  .foot-in p, .foot-in a{color:var(--muted); font-size:.87rem; display:block; margin-bottom:6px;}
+  .foot-in a:hover{color:var(--teal);}
+  .foot-bottom{max-width:820px; margin:22px auto 0; padding-top:16px; border-top:1px solid var(--line);
+    text-align:center; color:var(--muted); font-size:.8rem;}
+  .foot-bottom a{color:var(--teal);}
+  @media(max-width:560px){
+    header h1{font-size:1.3rem;}
+    .offer{padding:16px;}
+    .foot-in{grid-template-columns:1fr;}
+    .nav-in{justify-content:center;}
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-in">
+    <div class="brand"><span class="gift">🎁</span> کارا</div>
+    <div class="nav-links">
+      <a href="#offers">آفرها</a>
+      <a href="#how">چطور کار می‌کنه؟</a>
+      <a href="https://t.me/Kara_vippay_bot?start=vip">⭐ خرید VIP</a>
+      <a href="https://t.me/Kara_vippay_bot?start=support">💬 پشتیبانی</a>
+      <a href="https://www.instagram.com/kara_ai_offer">اینستاگرام</a>
+      <a class="nav-cta" href="https://t.me/Kara_vippay_bot">🤖 شروع در ربات</a>
+    </div>
+  </div>
+</nav>
+
+<header>
+  <h1><span class="gift">🎁</span> آرشیو آفرهای رایگان هوش مصنوعی</h1>
+  <p>جدیدترین اعتبارهای رایگان AI و کلود، معرفی پروژه‌های متن‌باز ترند گیتهاب — همه یک‌جا. توضیح کامل و آموزش استفاده‌ی هر مورد تو ربات کاراست.</p>
+  <div class="stats">
+    <div class="stat"><b id="st-count">—</b><span>آفر فعال</span></div>
+    <div class="stat"><b id="st-today">—</b><span>آخرین به‌روزرسانی</span></div>
+    <div class="stat"><b>۱۰۰٪</b><span>راستی‌آزمایی‌شده</span></div>
+  </div>
+</header>
+
+<section class="toolbar" id="offers">
+  <input class="search" id="q" type="text" placeholder="🔎 جستجو در آفرها...">
+  <div class="chips" id="chips"></div>
+  <div class="sort-row">
+    <div class="count" id="count"></div>
+    <select class="sort" id="sort">
+      <option value="new">🆕 جدیدترین اول</option>
+      <option value="old">🕐 قدیمی‌ترین اول</option>
+    </select>
+  </div>
+</section>
+
+<main id="list"></main>
+<div class="empty" id="empty">چیزی پیدا نشد 🤔 عبارت یا دسته‌ی دیگه‌ای امتحان کن</div>
+
+<section class="how" id="how">
+  <h2>⚡️ چطور کار می‌کنه؟</h2>
+  <div class="steps">
+    <div class="step"><b>۱. آفر رو پیدا کن</b><span>تو کانال یا همین صفحه، آفر موردعلاقه‌ات رو انتخاب کن.</span></div>
+    <div class="step"><b>۲. دکمه‌ی توضیحات رو بزن</b><span>ربات کارا باز می‌شه و توضیح کامل + آموزش قدم‌به‌قدم رو تو دایرکت می‌گیری.</span></div>
+    <div class="step"><b>۳. استفاده کن</b><span>طبق آموزش ثبت‌نام کن و اعتبار رایگان رو بگیر. ترندهای گیتهاب کاملاً رایگانن.</span></div>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-in">
+    <div>
+      <h4>🎁 کارا</h4>
+      <p>آفرهای رایگان هوش مصنوعی و معرفی پروژه‌های متن‌باز — برای جامعه‌ی فارسی‌زبان.</p>
+      <p>عضویت ویژه: دسترسی نامحدود به همه‌ی آفرها + پشتیبانی خرید.</p>
+    </div>
+    <div>
+      <h4>لینک‌ها</h4>
+      <a href="https://t.me/kara_ai_offer">📢 کانال کارا</a>
+      <a href="https://t.me/Kara_vippay_bot">🤖 ربات کارا</a>
+      <a href="https://www.instagram.com/kara_ai_offer">📸 اینستاگرام کارا</a>
+      <a href="https://ig.me/m/kara_ai_offer">✉️ دایرکت اینستاگرام</a>
+      <a href="https://t.me/Kara_vippay_bot?start=vip">⭐ خرید عضویت ویژه</a>
+    </div>
+  </div>
+  <div class="foot-bottom">ساخته‌شده با ♥ برای جامعه‌ی هوش مصنوعی فارسی · <a href="https://t.me/kara_ai_offer">@kara_ai_offer</a></div>
+</footer>
+
+<script>
+let OFFERS = [], ACTIVE_TAG = '', SORT = 'new';
+fetch('data.json').then(r=>r.json()).then(d=>{
+  OFFERS = d.offers || [];
+  document.getElementById('st-count').textContent = OFFERS.length;
+  document.getElementById('st-today').textContent = d.updated || '—';
+  buildChips();
+  render();
+});
+document.getElementById('q').addEventListener('input', ()=>render());
+document.getElementById('sort').addEventListener('change', e=>{SORT=e.target.value; render();});
+
+function buildChips(){
+  const tags = {};
+  OFFERS.forEach(o=>o.tags.forEach(t=>{ if(t) tags[t]=(tags[t]||0)+1; }));
+  const top = Object.entries(tags).sort((a,b)=>b[1]-a[1]).slice(0,10);
+  const box = document.getElementById('chips');
+  box.innerHTML = `<button class="chip on" data-tag="">همه (${OFFERS.length})</button>` +
+    top.map(([t,n])=>`<button class="chip" data-tag="${t}">${t} (${n})</button>`).join('');
+  box.addEventListener('click', e=>{
+    const b = e.target.closest('.chip'); if(!b) return;
+    ACTIVE_TAG = b.dataset.tag;
+    box.querySelectorAll('.chip').forEach(c=>c.classList.toggle('on', c===b));
+    render();
+  });
+}
+function render(){
+  const q = document.getElementById('q').value.trim();
+  let items = OFFERS.filter(o =>
+    (!ACTIVE_TAG || o.tags.includes(ACTIVE_TAG)) &&
+    (!q || (o.teaser + ' ' + (o.title||'')).includes(q)));
+  items.sort((a,b)=>SORT==='new' ? (b.ts-a.ts) : (a.ts-b.ts));
+  const list = document.getElementById('list');
+  const empty = document.getElementById('empty');
+  document.getElementById('count').textContent = items.length + ' مورد';
+  if(!items.length){ empty.style.display='block'; list.innerHTML=''; return; }
+  empty.style.display='none';
+  list.innerHTML = items.map(o=>{
+    const clamp = o.teaser.length > 200 ? ' clamp' : '';
+    const more = o.teaser.length > 200 ? `<button class="more-btn" onclick="this.previousElementSibling.classList.toggle('clamp');this.textContent=this.textContent==='نمایش بیشتر ▾'?'بستن ▴':'نمایش بیشتر ▾'">نمایش بیشتر ▾</button>` : '';
+    const type = o.type==='ترند' ? '<span class="type-badge type-trend">🐙 ترند گیتهاب</span>' : '<span class="type-badge type-afar">✦ آفر ویژه</span>';
+    return `
+    <div class="offer">
+      <div class="top"><h3>${esc(o.title||'')}</h3>${type}</div>
+      <div class="teaser${clamp}">${esc(o.teaser)}</div>
+      ${more}
+      <div class="tags">${o.tags.filter(t=>t).map(t=>`<span class="tag" onclick="filterTag('${t}')">${t}</span>`).join('')}</div>
+      <div class="actions"><a class="btn btn-telegram" href="https://t.me/Kara_vippay_bot?start=unlock_${o.token}">📝 توضیحات کامل و آموزش استفاده</a></div>
+    </div>`;
+  }).join('');
+}
+function filterTag(t){
+  const b = document.querySelector(`.chip[data-tag="${t}"]`);
+  if(b) b.click();
+  document.getElementById('offers').scrollIntoView();
+}
+function esc(s){ return (s||'').replace(/</g,'&lt;').replace(/&/g,'&amp;'); }
+</script>
+</body>
+</html>
